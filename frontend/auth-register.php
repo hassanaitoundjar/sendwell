@@ -12,11 +12,12 @@ use PHPMailer\PHPMailer\Exception;
 $username = $password = $confirm_password = $email = "";
 $username_err = $password_err = $confirm_password_err = $email_err ="";
 
-// Admin email address
-$admin_email = "aitlimamkhadija96@gmail.com";
 
+
+ 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
     
     // Validate username
     if(empty(trim($_POST["username"]))){
@@ -52,7 +53,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
     }
-    
     // Validate email
     if(empty(trim($_POST["email"]))){
         $email_err = "Please enter an email address.";
@@ -89,33 +89,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
     
+   
+    
+    
+    
     // Validate password
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";
-    } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "Password must have at least 6 characters.";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-    
-    // Validate confirm password
-    if(!isset($_POST["confirm_password"]) || empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm password.";
-    } else{
-        $confirm_password = trim($_POST["confirm_password"]);
-        if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
-        }
-    }
-    
+if(empty(trim($_POST["password"]))){
+  $password_err = "Please enter a password.";     
+} elseif(strlen(trim($_POST["password"])) < 6){
+  $password_err = "Password must have at least 6 characters.";
+} else{
+  $password = trim($_POST["password"]);
+}
+
+// Validate confirm password
+if (!isset($_POST["confirm_password"]) || empty(trim($_POST["confirm_password"]))){
+  $confirm_password_err = "Please confirm password.";     
+} else{
+  $confirm_password = trim($_POST["confirm_password"]);
+  if(empty($password_err) && ($password != $confirm_password)){
+      $confirm_password_err = "Password did not match.";
+  }
+}
+
+
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err)){
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)&& empty($email_err)){
+        
+
+        
+
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, email, verify_token, admin) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (username, password, email , verify_token,admin) VALUES (?, ?, ?, ?, ? )";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssi", $param_username, $param_password, $param_email, $param_verify_token, $param_admin);
+            mysqli_stmt_bind_param($stmt, "ssssi", $param_username, $param_password, $param_email, $param_verify_token, $param_admin  );
+
+            
             
             // Set parameter
             $param_username = $username;
@@ -126,61 +137,50 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Send verification email
-                $mail = new PHPMailer;
+               // Send verification email
+               $config = include ('../mail/mailer.php');
+               $email_config = $config['email'];
+               $mail = new PHPMailer;
 
-                // Configure mailer settings
-                $mail->isSMTP();
-                $mail->Host = $email_config['host'];
-                $mail->SMTPAuth = true;
-                $mail->Username = $email_config['username'];
-                $mail->Password = $email_config['password'];
-                $mail->SMTPSecure = 'tls';
-                $mail->Port = $email_config['port'];
+               // Configure mailer settings
+               $mail->isSMTP();
+               $mail->Host = $email_config['host'];
+               $mail->SMTPAuth = true;
+               $mail->Username = $email_config['username'];
+               $mail->Password = $email_config['password'];
+               $mail->SMTPSecure = 'tls';
+               $mail->Port = $email_config['port'];
 
-                $mail->setFrom($email_config['admin_email'], $email_config['admin_name']);
-                $mail->addAddress($email, $username);
-                $mail->Subject = 'Verify your email';
-                $mail->Body = "Hello $username,\n\nPlease click on the following link to verify your email address:\n\nhttps://iptvsmartersproo.com/frontend/verify-email.php?token=$param_verify_token";
+               $mail->setFrom($email_config['admin_email'], $email_config['admin_name']);
+               $mail->addAddress($email, $username);
+               $mail->Subject = 'Verify your email';
+               $mail->Body = "Hello $username,\n\nPlease click on the following link to verify your email address:\n\nhttps://iptvsmartersproo.com/frontend/verify-email.php?token=$param_verify_token";
 
-                if(!$mail->send()) {
-                    echo 'Message could not be sent.';
-                    echo 'Mailer Error: ' . $mail->ErrorInfo;
-                } else {
-                    // Send message to admin
-                    $admin_mail = new PHPMailer;
-                    $admin_mail->isSMTP();
-                    $admin_mail->Host = $email_config['host'];
-                    $admin_mail->SMTPAuth = true;
-                    $admin_mail->Username = $email_config['username'];
-                    $admin_mail->Password = $email_config['password'];
-                    $admin_mail->SMTPSecure = 'tls';
-                    $admin_mail->Port = $email_config['port'];
-
-                    $admin_mail->setFrom($email_config['admin_email'], $email_config['admin_name']);
-                    $admin_mail->addAddress($admin_email);
-                    $admin_mail->Subject = 'New user registration';
-                    $admin_mail->Body = "A new user has registered:\n\nUsername: $username\nEmail: $email";
-
-                    $admin_mail->send();
-
-                    // Redirect to login page
-                    header("location: auth-login.php");
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+               if(!$mail->send()) {
+                   echo 'Message could not be sent.';
+                   echo 'Mailer Error: ' . $mail->ErrorInfo;
+               } else {
+                   // Redirect to login page
+                   header("location: auth-login.php");
+               }
+           } else{
+               echo "Oops! Something went wrong. Please try again later.";
+           }
 
             // Close statement
             mysqli_stmt_close($stmt);
         }
     }
+
+
+    
+
+    
     
     // Close connection
     mysqli_close($link);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
