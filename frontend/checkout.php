@@ -120,18 +120,16 @@ if (isset($_GET["product"])) {
                 border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
         </form>
 
-        <form action="https://www.coinpayments.net/index.php" method="POST">
-            <input type="hidden" name="cmd" value="_pay_simple">
-            <input type="hidden" name="reset" value="1">
-            <input type="hidden" name="merchant" value="ff1e7187dd6a679e0f5ad3271ceaf50b">
-            <input type="hidden" name="currency" value="USD">
-            <input type="hidden" name="amountf" value="<?php echo $product['price']; ?>">
-            <input type="hidden" name="item_name" value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES); ?>">
-            <input type="hidden" name="item_number" value="<?php echo $product_id; ?>">
-            <input type="hidden" name="success_url" value="http://yourwebsite.com/thankyou.php">
-            <input type="hidden" name="cancel_url" value="http://yourwebsite.com/cancel.php">
+        <form action="./payment_process.php" method="POST">
+
+            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+            <input type="hidden" name="product_name"
+                value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES); ?>">
+            <input type="hidden" name="product_price" value="<?php echo $product['price']; ?>">
+            <input type="hidden" name="product_currency" value="<?php echo $product['currency']; ?>">
 
         </form>
+
 
     </div>
 
