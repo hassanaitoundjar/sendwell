@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     } else {
                         $_SESSION['admin'] = false;
                         $_SESSION['status'] = "You are not an admin.";
-                        header("Location: user_index.php"); // redirect to user index page
+                        header("Location: dashboard.php"); // redirect to user index page
                     }
 
                     exit(0);
