@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $mail->setFrom($email_config['admin_email'], $email_config['admin_name']);
             $mail->addAddress($get_email);
             $mail->Subject = 'Reset your password';
-            $mail->Body = "Hi $get_username,\n\nWe've had a request for a password reset on your account. If you requested this then you can change your password now by visiting the URL: \n\n http://localhost/dark/frontend/new-password.php?token=$token&email=$get_email \n\n If you did not request this then you need to take no further action and your password will not change. If this email alarms you please contact support for further help. \n\n Thanks, ";
+            $mail->Body = "Hi $get_username,\n\nWe've had a request for a password reset on your account. If you requested this then you can change your password now by visiting the URL: \n\n https://iptvsmartersproo.com/frontend/new-password.php?token=$token&email=$get_email \n\n If you did not request this then you need to take no further action and your password will not change. If this email alarms you please contact support for further help. \n\n Thanks, ";
 
             if(!$mail->send()) {
                 $_SESSION['status'] = 'Message could not be sent.';
