@@ -120,15 +120,6 @@ if (isset($_GET["product"])) {
                 border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
         </form>
 
-        <form action="./payment_process.php" method="POST">
-
-            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-            <input type="hidden" name="product_name"
-                value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES); ?>">
-            <input type="hidden" name="product_price" value="<?php echo $product['price']; ?>">
-            <input type="hidden" name="product_currency" value="<?php echo $product['currency']; ?>">
-
-        </form>
 
 
     </div>
