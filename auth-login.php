@@ -15,9 +15,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    if (!empty(trim($_POST['email'])) && !empty(trim($_POST['password']))) {
-      
+
+    if (!empty(trim($_POST['email'])) && !empty(trim($_POST['password'])) && !empty($_POST['g-recaptcha-response'])) {
+
         $email = mysqli_real_escape_string($link, $_POST['email']);
 
         $stmt = mysqli_prepare($link, "SELECT id, username, email, password, admin, verify_status, is_blocked FROM users WHERE email = ? LIMIT 1");
@@ -36,6 +36,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (password_verify($_POST['password'], $row['password'])) {
                 if ($row['verify_status'] == 1) {
+                    // Verify reCAPTCHA response
+                    $recaptchaResponse = $_POST['g-recaptcha-response'];
+                    $recaptchaSecretKey = '6LfP7fsmAAAAALHJp2PEPkLGKZBzvmgdpPAvPDj8'; // Replace with your reCAPTCHA Secret Key
+
+                    $recaptchaVerifyUrl = 'https://www.google.com/recaptcha/api/siteverify';
+                    $recaptchaData = array(
+                        'secret' => $recaptchaSecretKey,
+                        'response' => $recaptchaResponse
+                    );
+
+                    $recaptchaOptions = array(
+                        'http' => array(
+                            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                            'method' => 'POST',
+                            'content' => http_build_query($recaptchaData),
+                        ),
+                    );
+
+                    $recaptchaContext = stream_context_create($recaptchaOptions);
+                    $recaptchaResult = file_get_contents($recaptchaVerifyUrl, false, $recaptchaContext);
+                    $recaptchaResponseData = json_decode($recaptchaResult);
+
+                    if (!$recaptchaResponseData->success) {
+                        $_SESSION['status'] = "reCAPTCHA verification failed. Please try again.";
+                        header("Location: auth-login.php");
+                        exit(0);
+                    }
+
+                    // Valid reCAPTCHA response, proceed with login
+
                     $_SESSION['user_id'] = $row['id']; // set user ID in session variable
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['username'] = $row['username'];
@@ -47,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         setcookie('email', $row['email'], time() + (86400 * 30), "/");
                         setcookie('password', $_POST['password'], time() + (86400 * 30), "/");
                         setcookie('remember', 'checked', time() + (86400 * 30), "/"); // add a remember cookie
-                    } else {
+                    }else {
                         setcookie('email', '', time() - 3600, "/"); // delete the email cookie
                         setcookie('password', '', time() - 3600, "/"); // delete the password cookie
                         setcookie('remember', '', time() - 3600, "/"); // delete the remember cookie
@@ -109,8 +139,8 @@ if (isset($_GET['action']) && isset($_GET['user_id'])) {
     header("Location: user_control.php");
     exit(0);
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -211,6 +241,8 @@ include('./admin/include/header.php')
                                         aria-describedby="password" />
                                 </div>
                             </div>
+                            <div class="g-recaptcha" data-sitekey="6LfP7fsmAAAAANUUVEa-uuXCSHREaH9AcmhIAwHu"></div>
+
 
 
                             <div class="mm-check">

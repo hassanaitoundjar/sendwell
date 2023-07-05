@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit"])) {
     $sql = "UPDATE products SET name='$name', price='$price', currency='$currency' WHERE id=$id AND user_id=$user_id";
 
     if (mysqli_query($link, $sql)) {
-        echo "Data updated successfully";
+        // echo "Data updated successfully";
     } else {
-        echo "Error updating data: " . mysqli_error($link);
+        // echo "Error updating data: " . mysqli_error($link);
     }
 }
 
