@@ -174,11 +174,11 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['product_id'
         // sendInvoiceWhatsApp($whatsAppNumber, $name, $product, $order_id); // Add this line
         mysqli_stmt_execute($stmt);
     } else {
-        header("Location: list_product.php");
+        header("Location: auth-login.php");
         exit();
     }
 } else {
-    header("Location: list_product.php");
+    header("Location: auth-login.php");
     exit();
 }
 
