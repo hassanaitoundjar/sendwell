@@ -90,18 +90,7 @@ function test_input($data) {
     return $data;
 }
 
-function checkProductNameExists($name, $link) {
-    $sql = "SELECT id FROM products WHERE name = ?";
-    $stmt = mysqli_prepare($link, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $name);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $row = mysqli_fetch_assoc($result);
 
-    mysqli_stmt_close($stmt);
-
-    return $row !== null;
-}
 ?>
 
 
