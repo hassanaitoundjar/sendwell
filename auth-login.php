@@ -220,7 +220,7 @@ include('../admin/include/header.php')
                                     <label class="form-check-label" for="exampleCheck1">Remember Me</label>
 
                                 </div>
-                                <a href="forgot-password.php">Forgot Password?</a>
+                                <a href="/forgot-password">Forgot Password?</a>
                             </div>
 
                             <button type="submit" name="login-btn" class="btn btn-primary">Sign in</button>
@@ -228,7 +228,7 @@ include('../admin/include/header.php')
 
                         <div class="mm-b">
                             <h5>New on our platform?</h5>
-                            <a href="auth-register.php"> Create an account</a>
+                            <a href="/auth-register"> Create an account</a>
                         </div>
                     </div>
                 </div>
