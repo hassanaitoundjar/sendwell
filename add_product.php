@@ -1,6 +1,9 @@
 <?php
 include ('../admin/db.php');
 include ('../admin/include/userid.php');
+// Check if the user is not logged in, redirect to the login page with an error message
+include('./admin/include/checker-uesr.php');
+
 
 $currencies = array("USD", "EUR", "GBP", "JPY");
 
