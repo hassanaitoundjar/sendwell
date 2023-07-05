@@ -12,5 +12,6 @@ RewriteRule ^(.*)/$ /$1 [L,R=301]
 RewriteBase /
 
 # Rewrite product URLs
-RewriteRule ^shop/([0-9]+)-(.*)\.html$ /checkout.php?product=$1 [L]
+RewriteRule ^([0-9]+)-(.*)\.html$ /checkout.php?product=$1 [L]
+
 
