@@ -1,8 +1,8 @@
 <?php
 // Include config file
-include ('../admin/db.php');
-require ('../vendor/autoload.php');
-include ('../mail/mailer.php');
+include ('./admin/db.php');
+require ('./vendor/autoload.php');
+include ('./mail/mailer.php');
 
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -315,7 +315,7 @@ include('./admin/include/header.php')
                         </form>
                         <div class="mm-b">
                             <h5>Already have an account?</h5>
-                            <a href="/frontend/auth-login.php">Sign in</a>
+                            <a href="./auth-login">Sign in</a>
                         </div>
                     </div>
                 </div>

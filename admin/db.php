@@ -4,6 +4,10 @@ $servername = "localhost";
 $username = "u775625162_tagramt";
 $password = "147Tagramt@";
 $dbname = "paywell";
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "paywell";
 
 
 // Create a connection to the database
