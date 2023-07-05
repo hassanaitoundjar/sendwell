@@ -7,7 +7,7 @@ session_start();
 
 // Check if the user is not logged in, redirect to the login page with an error message
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: auth-login.php?error=access_denied");
+    header("location: auth-login.php");
     exit;
 }
 
