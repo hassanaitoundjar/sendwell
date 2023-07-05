@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($name && $price && $currency && $description) {
-        if (!checkProductNameExists($name, $link)) {
+        if (!checkProductNameExists($name, $link, $user_id)) {
             $price = sprintf("%.2f", $price);
 
             $sql = "INSERT INTO products (name, price, description, currency, checkout_url, created_at, user_id) VALUES (?, ?, ?, ?, ?, NOW(), ?)";
@@ -65,6 +65,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
+function checkProductNameExists($name, $link, $user_id) {
+    $sql = "SELECT COUNT(*) FROM products WHERE name = ? AND user_id = ?";
+    if ($stmt = mysqli_prepare($link, $sql)) {
+        mysqli_stmt_bind_param($stmt, "si", $name, $user_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $count);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+        
+        return $count > 0;
+    }
+    
+    return false;
+}
+
+
 
 function test_input($data) {
     $data = trim($data);
