@@ -6,10 +6,10 @@ session_start();
 // Check if the user is already logged in, if yes then redirect him to the appropriate index page
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-        header("location: dashboard.php");
+        header("location: index.php");
         exit;
     } else {
-        header("location: dashboard.php");
+        header("location: index.php");
         exit;
     }
 }
@@ -55,11 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if ($row['admin'] == 1) { // check if user is an admin
                         $_SESSION['admin'] = true;
-                        header("Location: dashboard.php"); // redirect to admin index page
+                        header("Location: index.php"); // redirect to admin index page
                     } else {
                         $_SESSION['admin'] = false;
                         $_SESSION['status'] = "You are not an admin.";
-                        header("Location: dashboard.php"); // redirect to user index page
+                        header("Location: index.php"); // redirect to user index page
                     }
 
                     exit(0);

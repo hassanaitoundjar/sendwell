@@ -12,11 +12,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 
 // Check if the user has the right role to access the page
-if (basename($_SERVER["PHP_SELF"]) === "dashboard.php" && (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true)) {
+if (basename($_SERVER["PHP_SELF"]) === "index.php" && (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true)) {
     header("location: user_index.php");
     exit;
 } elseif (basename($_SERVER["PHP_SELF"]) === "user_index.php" && isset($_SESSION["admin"]) && $_SESSION["admin"] === true) {
-    header("location: dashboard.php");
+    header("location: index.php");
     exit;
 }
 

@@ -154,7 +154,7 @@ if (!isset($_POST["confirm_password"]) || empty(trim($_POST["confirm_password"])
                $mail->setFrom($email_config['admin_email'], $email_config['admin_name']);
                $mail->addAddress($email, $username);
                $mail->Subject = 'Verify your email';
-               $mail->Body = "Hello $username,\n\nPlease click on the following link to verify your email address:\n\nhttps://iptvsmartersproo.com/frontend/verify-email.php?token=$param_verify_token";
+               $mail->Body = "Hello $username,\n\nPlease click on the following link to verify your email address:\n\nhttps://iptvsmartersproo.com/verify-email.php?token=$param_verify_token";
 
                if(!$mail->send()) {
                    echo 'Message could not be sent.';

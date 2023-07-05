@@ -11,7 +11,7 @@
     <?php
 
 
-include('../admin/include/header.php')
+include('./admin/include/header.php')
 
      
      ?>
