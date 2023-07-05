@@ -152,7 +152,7 @@ include('./admin/include/header.php')
                         </form>
                         <div class="mm-b">
 
-                            <a href="auth-login.php">Return to sign in</a>
+                            <a href="./auth-login">Return to sign in</a>
                         </div>
                     </div>
                 </div>
