@@ -78,7 +78,7 @@ function sendAdminEmail($admin_email, $admin_name, $customer_email, $customer_na
 }
 
 function sendInvoiceEmail($email, $name, $product, $order_id) {
-    $config = include '../mail/mailer.php';
+    $config = include './mail/mailer.php';
     $email_config = $config['email'];
     // Create a new PHPMailer instance
     $mail = new PHPMailer(true);
@@ -162,7 +162,7 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['product_id'
         $stmt = mysqli_prepare($link, "INSERT INTO orders (name, email, whatsapp_number, product_id, product_name, price, currency, transaction_id, order_id, adult, channels, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "sssssssssssi", $name, $email, $whatsapp_number, $product_id, $product_name, $price, $product['currency'], $transaction_id, $order_id, $adult, $channels_selected, $user_id);
 
-        $config = include '../mail/mailer.php';
+        $config = include './mail/mailer.php';
         $email_config = $config['email'];
         // Use the admin email and name from the configuration file
         $admin_email = $email_config['admin_email'];
