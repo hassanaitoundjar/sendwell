@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "u775625162_tagramt";
 $password = "147Tagramt@";
-$dbname = "u775625162_paywell";
+$dbname = "paywell";
 
 
 // Create a connection to the database
