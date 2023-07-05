@@ -125,7 +125,7 @@ if (isset($_GET['action']) && isset($_GET['user_id'])) {
     <?php
 
 
-include('/admin/include/header.php')
+include('./admin/include/header.php')
 
      
      ?>
