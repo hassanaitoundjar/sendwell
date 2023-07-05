@@ -124,14 +124,14 @@ $orders = getOrders($link, $user_id, $page, $ordersPerPage);
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <?php include('../admin/include/sidebar.php') ?>
+        <?php include('./admin/include/sidebar.php') ?>
         <!-- Sidebar End -->
 
 
         <!-- Content Start -->
         <div class="content w-100 align-items-center ">
             <!-- Navbar Start -->
-            <?php include('../admin/include/navbar.php')?>
+            <?php include('./admin/include/navbar.php')?>
             <!-- Navbar End -->
             <div class="  pt-4 px-4">
                 <div class="row g-4">
@@ -300,7 +300,7 @@ $orders = getOrders($link, $user_id, $page, $ordersPerPage);
     <?php
 
 
-include('../admin/include/javascript.php')
+include('./admin/include/javascript.php')
 
      
      ?>

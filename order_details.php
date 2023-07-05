@@ -70,11 +70,11 @@ if ($order_id) {
 
 
         <!-- Sidebar Start -->
-        <?php include('../admin/include/sidebar.php')?>
+        <?php include('./admin/include/sidebar.php')?>
         <!-- Content Start -->
         <div class="content w-100 align-items-center ">
             <!-- Navbar Start -->
-            <?php include('../admin/include/navbar.php')?>
+            <?php include('./admin/include/navbar.php')?>
             <!-- Navbar End -->
             <!-- Sale & Revenue Start -->
             <div class="  pt-4 px-4">
@@ -200,7 +200,7 @@ if ($order_id) {
     </div>
 
     <!-- JavaScript Libraries -->
-    <?php include('../admin/include/javascript.php')
+    <?php include('./admin/include/javascript.php')
 
      
      ?>

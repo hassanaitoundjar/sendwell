@@ -95,7 +95,7 @@ include('./admin/include/header.php')
         <?php
 
 
-include('../admin/include/sidebar.php')
+include('./admin/include/sidebar.php')
 
      
      ?>
@@ -108,7 +108,7 @@ include('../admin/include/sidebar.php')
             <?php
 
 
-include('../admin/include/navbar.php')
+include('./admin/include/navbar.php')
 
      
      ?>
@@ -300,7 +300,7 @@ include('../admin/include/navbar.php')
     <?php
 
 
-include('../admin/include/javascript.php')
+include('./admin/include/javascript.php')
 
      
      ?>
