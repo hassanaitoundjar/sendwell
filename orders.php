@@ -206,7 +206,7 @@ $orders = getOrders($link, $user_id, $page, $ordersPerPage);
                                 <tr>
                                     <td>
                                         <a
-                                            href="https://iptvsmartersproo.com/frontend/order_details.php?id=<?php echo htmlspecialchars($order['id'], ENT_QUOTES); ?>">
+                                            href="https://iptvsmartersproo.com/order_details?id=<?php echo htmlspecialchars($order['id'], ENT_QUOTES); ?>">
                                             <?php echo htmlspecialchars($order['order_id'], ENT_QUOTES); ?>
                                         </a>
                                     </td>
