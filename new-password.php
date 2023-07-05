@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <?php include('../admin/include/header.php')?>
+    <?php include('/admin/include/header.php')?>
 </head>
 
 <body>

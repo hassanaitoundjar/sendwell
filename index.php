@@ -179,7 +179,7 @@ $json_data = json_encode($sales_data);
     <meta content="" name="keywords">
     <meta content="" name="description">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <?php include('../admin/include/header.php')?>
+    <?php include('/admin/include/header.php')?>
 </head>
 
 <body>

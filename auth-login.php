@@ -6,10 +6,10 @@ session_start();
 // Check if the user is already logged in, if yes then redirect him to the appropriate index page
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-        header("location: index.php");
+        header("location: index");
         exit;
     } else {
-        header("location: index.php");
+        header("location: index");
         exit;
     }
 }
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($row['is_blocked'] == 1) {
                 $_SESSION['status'] = "Your account is blocked. Please contact the administrator.";
-                header("Location: auth-login.php");
+                header("Location: auth-login");
                 exit(0);
             }
 
@@ -125,7 +125,7 @@ if (isset($_GET['action']) && isset($_GET['user_id'])) {
     <?php
 
 
-include('../admin/include/header.php')
+include('/admin/include/header.php')
 
      
      ?>

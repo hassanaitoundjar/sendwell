@@ -70,7 +70,7 @@ if (isset($_GET["search"])) {
     <?php
 
 
-include('../admin/include/header.php')
+include('/admin/include/header.php')
 
      
      ?>

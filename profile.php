@@ -71,7 +71,7 @@ mysqli_close($link);
     <?php
 
 
-include('../admin/include/header.php')
+include('/admin/include/header.php')
 
      
      ?>
