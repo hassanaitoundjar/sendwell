@@ -241,7 +241,10 @@ include('./admin/include/header.php')
                                         aria-describedby="password" />
                                 </div>
                             </div>
-                            <div class="g-recaptcha" data-sitekey="6LfP7fsmAAAAANUUVEa-uuXCSHREaH9AcmhIAwHu"></div>
+                            <div class="form mb-3">
+                                <div class="g-recaptcha" data-sitekey="6LfP7fsmAAAAANUUVEa-uuXCSHREaH9AcmhIAwHu"></div>
+                            </div>
+
 
 
 
