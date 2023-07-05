@@ -138,7 +138,7 @@ if (!isset($_POST["confirm_password"]) || empty(trim($_POST["confirm_password"])
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                // Send verification email
-               $config = include ('../mail/mailer.php');
+               $config = include ('./mail/mailer.php');
                $email_config = $config['email'];
                $mail = new PHPMailer;
 
