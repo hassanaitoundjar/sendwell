@@ -6,10 +6,10 @@ session_start();
 // Check if the user is already logged in, if yes then redirect him to the appropriate index page
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-        header("location: index");
+        header("location: index.php");
         exit;
     } else {
-        header("location: index");
+        header("location: auth-login.php");
         exit;
     }
 }
