@@ -1,5 +1,5 @@
 <?php
-include ('../admin/db.php');
+include ('./admin/db.php');
 
 // Function to sanitize input data
 function test_input($data)

@@ -1,6 +1,6 @@
 <?php
 // Include your database connection and helper functions
-include ('../admin/db.php');
+include ('./admin/db.php');
 session_start();
 
 // Check if the user is logged in and is an admin, otherwise redirect to the login page

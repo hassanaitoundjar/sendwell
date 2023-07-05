@@ -2,8 +2,8 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-require ('../vendor/autoload.php');
-include ('../mail/mailer.php');
+require ('./vendor/autoload.php');
+include ('./mail/mailer.php');
 
 function send_email($to, $subject, $body)
 {

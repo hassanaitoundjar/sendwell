@@ -3,7 +3,7 @@
 
 
 session_start();
-include ('../admin/db.php');
+include ('./admin/db.php');
 if(isset($_GET['token']))
 {
     $token = $_GET['token'];
