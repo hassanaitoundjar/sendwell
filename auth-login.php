@@ -16,14 +16,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    if (!empty(trim($_POST['email'])) && !empty(trim($_POST['password'])) && !empty($_POST['captcha'])) {
-        // Verify the captcha
-        $captcha = $_POST['captcha'];
-        if (!verifyCaptcha($captcha)) {
-            $_SESSION['status'] = "Invalid captcha. Please try again.";
-            header("Location: auth-login.php");
-            exit(0);
-        }
+    if (!empty(trim($_POST['email'])) && !empty(trim($_POST['password']))) {
+      
         $email = mysqli_real_escape_string($link, $_POST['email']);
 
         $stmt = mysqli_prepare($link, "SELECT id, username, email, password, admin, verify_status, is_blocked FROM users WHERE email = ? LIMIT 1");
@@ -114,31 +108,6 @@ if (isset($_GET['action']) && isset($_GET['user_id'])) {
 
     header("Location: user_control.php");
     exit(0);
-
-    // Function to verify the captcha response
-function verifyCaptcha($captcha)
-{
-    $secretKey = '6LfP7fsmAAAAALHJp2PEPkLGKZBzvmgdpPAvPDj8'; // Replace with your reCAPTCHA secret key
-    $url = 'https://www.google.com/recaptcha/api/siteverify';
-    $data = array(
-        'secret' => $secretKey,
-        'response' => $captcha
-    );
-
-    $options = array(
-        'http' => array(
-            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-            'method' => 'POST',
-            'content' => http_build_query($data)
-        )
-    );
-
-    $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    $response = json_decode($result, true);
-
-    return $response['success'];
-}
 }
 
 ?>
@@ -241,10 +210,6 @@ include('./admin/include/header.php')
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
                                 </div>
-                            </div>
-                            <div>
-                                <!-- Add the CAPTCHA widget -->
-                                <div class="g-recaptcha" data-sitekey="6LfP7fsmAAAAANUUVEa-uuXCSHREaH9AcmhIAwHu"></div>
                             </div>
 
 
