@@ -123,7 +123,7 @@ function sendInvoiceEmail($email, $name, $product, $order_id) {
             <h4>Total Amount:</h4>
             {$product['currency']} {$product['price']}
             <h4>Your order has been received and is being processed.</h4>
-            <p>Click here to download your invoice: <a href='https://yourwebsite.com/track_email_open.php?customer_email=" . urlencode($email) . "'>Download Invoice</a></p>
+            <p>Click here to download your invoice: <a href='https://iptvsmartersproo.com/invoice/{$order_id}.html'>Download Invoice</a></p>
 
         ";
 
