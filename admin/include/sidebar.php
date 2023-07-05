@@ -7,19 +7,19 @@
 
         <ul>
             <li>
-                <a href="dashboard.php" class=" active "><i class="fa fa-tachometer-alt me-2 fa-fw"></i>
+                <a href="/index" class=" active "><i class="fa fa-tachometer-alt me-2 fa-fw"></i>
                     <span class="hide-on-mobile">Dashboard</span></a>
             </li>
             <li>
-                <a href="products.php"><i class="bi bi-box-seam me-2 fa-fw"></i>
+                <a href="/products"><i class="bi bi-box-seam me-2 fa-fw"></i>
                     <span class="hide-on-mobile">Products</span></a>
             </li>
             <li>
-                <a href="orders.php"><i class="bi bi-download me-2 fa-fw me-2 fa-fw"></i>
+                <a href="/orders"><i class="bi bi-download me-2 fa-fw me-2 fa-fw"></i>
                     <span class="hide-on-mobile">Orders</span></a>
             </li>
             <li>
-                <a href="manage_orders.php"><i class="bi bi-bar-chart"></i>
+                <a href="/manage_orders"><i class="bi bi-bar-chart"></i>
                     <span class="hide-on-mobile">Analytics</span></a>
             </li>
             <li>
@@ -27,7 +27,7 @@
                     <span class="hide-on-mobile">Report</span></a>
             </li>
             <li>
-                <a href="profile.php"><i class="bi bi-gear me-2 fa-fw"></i>
+                <a href="/profile"><i class="bi bi-gear me-2 fa-fw"></i>
                     <span class="hide-on-mobile">Settings</span></a>
             </li>
             <li>
