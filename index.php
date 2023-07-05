@@ -7,18 +7,18 @@ session_start();
 
 // Check if the user is not logged in, redirect to the login page with an error message
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: auth-login.php");
+    header("location: auth-login");
     exit;
 }
 
-// Check if the user has the right role to access the page
-if (basename($_SERVER["PHP_SELF"]) === "index.php" && (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true)) {
-    header("location: index.php");
-    exit;
-} elseif (basename($_SERVER["PHP_SELF"]) === "index.php" && isset($_SESSION["admin"]) && $_SESSION["admin"] === true) {
-    header("location: index.php");
-    exit;
-}
+// // Check if the user has the right role to access the page
+// if (basename($_SERVER["PHP_SELF"]) === "index.php" && (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true)) {
+//     header("location: index.php");
+//     exit;
+// } elseif (basename($_SERVER["PHP_SELF"]) === "index.php" && isset($_SESSION["admin"]) && $_SESSION["admin"] === true) {
+//     header("location: index.php");
+//     exit;
+// }
 
 // Get user information
 $user_id = $_SESSION['user_id'];
