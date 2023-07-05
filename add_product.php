@@ -99,7 +99,7 @@ function checkProductNameExists($name, $link) {
     <?php
 
 
-include('/admin/include/header.php')
+include('./admin/include/header.php')
 
      
      ?>
