@@ -1,6 +1,6 @@
 <?php
 
-include ('../admin/db.php');
+include ('./admin/db.php');
 
 // Initialize the session
 session_start();
@@ -190,12 +190,12 @@ $json_data = json_encode($sales_data);
         </div>
         <!-- Spinner End -->
         <!-- Sidebar Start -->
-        <?php include('../admin/include/sidebar.php')?>
+        <?php include('./admin/include/sidebar.php')?>
         <!-- Sidebar End -->
         <!-- Content Start -->
         <div class="content ">
             <!-- Navbar Start -->
-            <?php include('../admin/include/navbar.php')?>
+            <?php include('./admin/include/navbar.php')?>
             <!-- Navbar End -->
             <!-- Sale & Revenue Start -->
             <div class=" pt-4 px-4">
@@ -419,7 +419,7 @@ $json_data = json_encode($sales_data);
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
-    <?php include('../admin/include/javascript.php')?>
+    <?php include('./admin/include/javascript.php')?>
     <script>
     const salesData = <?php echo $json_data; ?>;
     const labels = salesData.map(p => p.date);
