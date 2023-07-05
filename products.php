@@ -161,11 +161,13 @@ include('./admin/include/navbar.php')
 
                                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                                     <tr>
-                                        <td><a
-                                                href="<?php echo "https://iptvsmartersproo.com/checkout?product=" . $row['id']; ?>">
+                                        <td>
+                                            <a
+                                                href="https://iptvsmartersproo.com/checkout/product.php?id=<?php echo $row['id']; ?>&name=<?php echo urlencode(strtolower(str_replace(' ', '-', $row['name']))); ?>">
                                                 <?php echo $row["name"]; ?>
                                             </a>
                                         </td>
+
                                         <td><?php echo $row["price"] . ' ' . $row["currency"]; ?></td>
                                         <td><?php echo $row["created_at"]; ?></td>
                                         <td>
