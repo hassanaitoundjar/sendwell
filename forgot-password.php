@@ -1,9 +1,9 @@
 <?php
 session_start();
 // Include config file
-include ('../admin/db.php');
-require ('../vendor/autoload.php');
-include ('../mail/mailer.php');
+include ('./admin/db.php');
+require ('./vendor/autoload.php');
+include ('./mail/mailer.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
