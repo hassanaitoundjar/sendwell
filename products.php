@@ -163,7 +163,7 @@ include('./admin/include/navbar.php')
                                     <tr>
                                         <td>
                                             <a
-                                                href="https://iptvsmartersproo.com/checkout.php?product=<?php echo $row['id']; ?>&name=<?php echo urlencode(strtolower(str_replace(' ', '-', $row['name']))); ?>.html">
+                                                href="https://iptvsmartersproo.com/checkout?product=<?php echo $row['id']; ?>&name=<?php echo urlencode(strtolower(str_replace(' ', '-', $row['name']))); ?>.html">
                                                 <?php echo $row["name"]; ?>
                                             </a>
                                         </td>
