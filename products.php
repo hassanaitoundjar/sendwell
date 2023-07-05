@@ -2,7 +2,7 @@
 include './admin/db.php';
 include ('./admin/include/userid.php');
 // Check if the user is not logged in, redirect to the login page with an error message
-include('./admin/include/checker-uesr.php');
+// include('./admin/include/checker-uesr.php');
 
 $user_id = $_SESSION['user_id'];
 
@@ -161,11 +161,13 @@ include('./admin/include/navbar.php')
 
                                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                                     <tr>
-                                        <td><a
-                                                href="<?php echo "https://iptvsmartersproo.com/checkout.php?product=" . $row['id']; ?>">
+                                        <td>
+                                            <a
+                                                href="https://iptvsmartersproo.com/shop/<?php echo $row['id']; ?>-<?php echo urlencode($row['name']); ?>.html">
                                                 <?php echo $row["name"]; ?>
                                             </a>
                                         </td>
+
 
                                         <td><?php echo $row["price"] . ' ' . $row["currency"]; ?></td>
                                         <td><?php echo $row["created_at"]; ?></td>
