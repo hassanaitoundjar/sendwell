@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             mysqli_close($link);
         } else {
-            $nameExistsErr = "Product name already exists.";
+            $nameExistsErr = "Product Product name already exists.";
             $_SESSION['status'] = $nameExistsErr;
             $_SESSION['status_type'] = "error";
         }
