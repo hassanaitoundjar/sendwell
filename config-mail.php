@@ -1,3 +1,10 @@
+<?php
+
+
+// Check if the user is not logged in, redirect to the login page with an error message
+include('./admin/include/checker-uesr.php');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

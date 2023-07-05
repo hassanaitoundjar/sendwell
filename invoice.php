@@ -3,6 +3,9 @@
 include ('../admin/db.php');
 require ('../vendor/autoload.php');
 include ('../mail/mailer.php');
+// Check if the user is not logged in, redirect to the login page with an error message
+include('./admin/include/checker-uesr.php');
+
 session_start();
 
 
@@ -20,7 +23,7 @@ function test_input($data)
 }
 
 function sendAdminEmail($admin_email, $admin_name, $customer_email, $customer_name, $whatsapp_number, $transaction_id, $product, $order_id) {
-    $config = include '../mail/mailer.php';
+    $config = include './mail/mailer.php';
     $email_config = $config['email'];
     $mail = new PHPMailer(true);
 

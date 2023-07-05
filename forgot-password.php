@@ -4,6 +4,9 @@ session_start();
 include ('./admin/db.php');
 require ('./vendor/autoload.php');
 include ('./mail/mailer.php');
+// Check if the user is not logged in, redirect to the login page with an error message
+include('./admin/include/checker-uesr.php');
+
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;

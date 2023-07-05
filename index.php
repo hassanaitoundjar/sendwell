@@ -6,10 +6,7 @@ include ('../admin/db.php');
 session_start();
 
 // Check if the user is not logged in, redirect to the login page with an error message
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: auth-login");
-    exit;
-}
+include('./admin/include/checker-uesr.php');
 
 // // Check if the user has the right role to access the page
 // if (basename($_SERVER["PHP_SELF"]) === "index.php" && (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true)) {
