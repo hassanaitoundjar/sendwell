@@ -1,7 +1,7 @@
 <?php
 // Set up database connection parameters
 $servername = "localhost";
-$username = "u775625162_tagramt";
+$username = "tagramt";
 $password = "147Tagramt@";
 $dbname = "paywell";
 // $servername = "localhost";
