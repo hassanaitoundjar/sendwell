@@ -162,7 +162,7 @@ include('./admin/include/navbar.php')
                                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                                     <tr>
                                         <td><a
-                                                href="<?php echo "https://iptvsmartersproo.com/checkout?product=" . $row['id']; ?>">
+                                                href="<?php echo "https://iptvsmartersproo.com/checkout?product=" . urlencode(base64_encode($row['id'])); ?>">
                                                 <?php echo $row["name"]; ?>
                                             </a>
                                         </td>
