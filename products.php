@@ -44,7 +44,7 @@ $sql = "SELECT * FROM products WHERE user_id=$user_id";
 $result = mysqli_query($link, $sql);
 
 if (mysqli_num_rows($result) == 0) {
-    header("Location: add_product.php");
+    header("Location: add_product");
     exit();
 }
 
