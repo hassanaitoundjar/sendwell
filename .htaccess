@@ -8,3 +8,9 @@ RewriteRule ^(.*)$ $1.php [NC,L]
 # Remove trailing slash from URLs (optional)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+RewriteBase /
+
+# Rewrite product URLs
+RewriteRule ^shop/([0-9]+)-(.*)\.html$ /checkout.php?product=$1 [L]
+
