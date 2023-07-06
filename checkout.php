@@ -49,7 +49,7 @@ if (isset($_GET["product"])) {
         <h2>Checkout</h2>
         <h4>Product: <?php echo htmlspecialchars($product['name'], ENT_QUOTES); ?></h4>
         <h4>Price: <?php echo htmlspecialchars($product['currency'] . " " . $product['price'], ENT_QUOTES); ?></h4>
-        <form method="POST" action="invoice.php">
+        <form method="POST" action="https://iptvsmartersproo.com/invoice.php">
             <div class="form-group">
                 <label for="name">Full Name:</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name"
