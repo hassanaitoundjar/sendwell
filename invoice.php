@@ -171,6 +171,12 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['product_id'
 
         sendInvoiceEmail($email, $name, $product, $order_id);
         sendAdminEmail($admin_email, $admin_name, $email, $name, $whatsapp_number, $transaction_id, $product, $order_id);
+        // Update the payment status in the 'orders' table
+        if ($payment_status === 'Completed') {
+            $stmt = mysqli_prepare($link, "UPDATE orders SET payment_status = 'Completed' WHERE order_id = ?");
+            mysqli_stmt_bind_param($stmt, "s", $order_id);
+            mysqli_stmt_execute($stmt);
+        }
         // sendInvoiceWhatsApp($whatsAppNumber, $name, $product, $order_id); // Add this line
         mysqli_stmt_execute($stmt);
     } else {
