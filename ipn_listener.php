@@ -12,7 +12,7 @@ foreach ($raw_post_array as $keyval) {
 }
 
 // Step 2: Send the IPN data back to PayPal for verification
-$paypal_url = 'https://www.paypal.com/cgi-bin/webscr';
+$paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; // Sandbox URL for testing
 $ch = curl_init($paypal_url);
 
 curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
