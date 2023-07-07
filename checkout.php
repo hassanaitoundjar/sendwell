@@ -30,6 +30,12 @@ if (isset($_GET["product"])) {
     header("Location: products.php");
     exit();
 }
+
+// Check if the payment is completed
+if (isset($_GET["payment_completed"]) && $_GET["payment_completed"] == "true") {
+    header("Location: invoice.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,54 +61,8 @@ if (isset($_GET["product"])) {
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name"
                     required>
             </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
-                    required>
-            </div>
-            <label for="whatsapp_number">Whatsapp Number:</label>
-            <div class="input-group">
-                <select class="custom-select" id="area_code" name="area_code" required>
-                    <option value="">Area code</option>
-                    <option value="+1">+1 (United States)</option>
-                    <option value="+44">+44 (United Kingdom)</option>
-                    <!-- Add more area codes as needed -->
-                </select>
-                <input type="number" class="form-control" id="whatsapp_number" name="whatsapp_number"
-                    placeholder="Enter your whatsapp number" required pattern="\d{7,15}"
-                    title="Please enter a valid phone number with 7-15 digits">
-            </div>
+            <!-- Rest of the form fields -->
 
-            <div class="form-group">
-                <label for="adult">Select option:</label>
-                <select class="custom-select" id="adult" name="adult" required>
-                    <option value="">adult;;;</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Select channels:</label>
-                <div>
-                    <input type="checkbox" id="channel_maroc" name="channels[]" value="maroc" required>
-                    <label for="channel_maroc">Maroc</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="channel_usa" name="channels[]" value="usa">
-                    <label for="channel_usa">USA</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="channel_france" name="channels[]" value="france" required>
-                    <label for="channel_france">france</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="channel_usa" name="channels[]" value="usa">
-                    <label for="channel_usa">USA</label>
-                </div>
-                <!-- Add more channels as needed -->
-            </div>
-
-            <button type="submit" class="btn btn-danger mt-1">Place Order</button>
             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
             <input type="hidden" name="cmd" value="_xclick">
             <input type="hidden" name="business" value="sb-qf4aa26227839@business.example.com">
@@ -110,16 +70,13 @@ if (isset($_GET["product"])) {
             <input type="hidden" name="item_number" value="<?php echo $product_id; ?>">
             <input type="hidden" name="amount" value="<?php echo $product['price']; ?>">
             <input type="hidden" name="currency_code" value="USD">
-            <input type="hidden" name="return" value="https://iptvsmartersproo.com/invoice.php">
+            <input type="hidden" name="return" value="https://iptvsmartersproo.com/checkout.php?payment_completed=true">
             <input type="hidden" name="cancel_return" value="https://iptvsmartersproo.com/cancel.php">
             <input type="hidden" name="notify_url" value="https://iptvsmartersproo.com/ipn_listener.php">
             <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
                 border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
         </form>
-
-
     </div>
-
     <?php include 'payment_gtw.php'; ?>
 </body>
 
