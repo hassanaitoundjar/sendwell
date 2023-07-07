@@ -102,13 +102,13 @@ if (isset($_GET["product"])) {
                 <!-- Add more channels as needed -->
             </div>
 
-            <button type="submit" class="btn btn-danger mt-1 ">Place Order</button>
+            <button type="submit" class="btn btn-danger mt-1">Place Order</button>
             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
         </form>
 
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
             <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="stephencox@sky.com">
+            <input type="hidden" name="business" value="sb-qf4aa26227839@business.example.com">
             <input type="hidden" name="item_name" value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES); ?>">
             <input type="hidden" name="item_number" value="<?php echo $product_id; ?>">
             <input type="hidden" name="amount" value="<?php echo $product['price']; ?>">
@@ -119,10 +119,6 @@ if (isset($_GET["product"])) {
             <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
                 border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
         </form>
-
-
-
-
     </div>
 
     <?php include 'payment_gtw.php'; ?>
