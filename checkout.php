@@ -108,17 +108,18 @@ if (isset($_GET["product"])) {
 
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
             <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="stephencox@sky.com">
+            <input type="hidden" name="business" value="sb-ryxpo26551751@personal.example.com">
             <input type="hidden" name="item_name" value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES); ?>">
             <input type="hidden" name="item_number" value="<?php echo $product_id; ?>">
             <input type="hidden" name="amount" value="<?php echo $product['price']; ?>">
             <input type="hidden" name="currency_code" value="USD">
-            <input type="hidden" name="return" value="http://yourwebsite.com/thankyou.php">
-            <input type="hidden" name="cancel_return" value="http://yourwebsite.com/cancel.php">
-            <input type="hidden" name="notify_url" value="http://yourwebsite.com/ipn_listener.php">
+            <input type="hidden" name="return" value="https://iptvsmartersproo.com/invoice.php">
+            <input type="hidden" name="cancel_return" value="https://iptvsmartersproo.com/cancel.php">
+            <input type="hidden" name="notify_url" value="https://iptvsmartersproo.com/ipn_listener.php">
             <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
                 border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
         </form>
+
 
 
 
