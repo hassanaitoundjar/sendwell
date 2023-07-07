@@ -108,7 +108,7 @@ if (isset($_GET["product"])) {
 
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
             <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="hassntagramt@gmail.com">
+            <input type="hidden" name="business" value="stephencox@sky.com">
             <input type="hidden" name="item_name" value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES); ?>">
             <input type="hidden" name="item_number" value="<?php echo $product_id; ?>">
             <input type="hidden" name="amount" value="<?php echo $product['price']; ?>">
