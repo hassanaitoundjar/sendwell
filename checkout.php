@@ -30,6 +30,28 @@ if (isset($_GET["product"])) {
     header("Location: products.php");
     exit();
 }
+
+// Validate form data before submitting the PayPal payment
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $name = test_input($_POST["name"]);
+    $email = test_input($_POST["email"]);
+    $area_code = test_input($_POST["area_code"]);
+    $whatsapp_number = test_input($_POST["whatsapp_number"]);
+    $adult = test_input($_POST["adult"]);
+    $channels = $_POST["channels"];
+
+    // Check if all required fields are filled
+    if (empty($name) || empty($email) || empty($area_code) || empty($whatsapp_number) || empty($adult) || empty($channels)) {
+        header("Location: error.php"); // Replace "error.php" with the URL of your error page
+        exit();
+    }
+
+    // Sanitize and validate the whatsapp_number field (digits between 7-15)
+    if (!preg_match("/^\d{7,15}$/", $whatsapp_number)) {
+        header("Location: error.php"); // Replace "error.php" with the URL of your error page
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -106,6 +128,7 @@ if (isset($_GET["product"])) {
             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
         </form>
 
+        <?php if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($name) && !empty($email) && !empty($area_code) && !empty($whatsapp_number) && !empty($adult) && !empty($channels)) : ?>
         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
             <input type="hidden" name="cmd" value="_xclick">
             <input type="hidden" name="business" value="sb-qf4aa26227839@business.example.com">
@@ -119,6 +142,7 @@ if (isset($_GET["product"])) {
             <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
                 border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
         </form>
+        <?php endif; ?>
     </div>
 
     <?php include 'payment_gtw.php'; ?>
