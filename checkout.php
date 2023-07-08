@@ -30,13 +30,6 @@ if (isset($_GET["product"])) {
     header("Location: products.php");
     exit();
 }
-
-// Check if the payment is completed with PayPal Standard
-if (isset($_GET["payment_status"]) && $_GET["payment_status"] == "completed") {
-    // Redirect to a new page
-    header("Location: invoice.php");
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +49,62 @@ if (isset($_GET["payment_status"]) && $_GET["payment_status"] == "completed") {
         <h2>Checkout</h2>
         <h4>Product: <?php echo htmlspecialchars($product['name'], ENT_QUOTES); ?></h4>
         <h4>Price: <?php echo htmlspecialchars($product['currency'] . " " . $product['price'], ENT_QUOTES); ?></h4>
+        <form method="POST" action="https://iptvsmartersproo.com/invoice.php">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
+                    required>
+            </div>
+            <label for="whatsapp_number">Whatsapp Number:</label>
+            <div class="input-group">
+                <select class="custom-select" id="area_code" name="area_code" required>
+                    <option value="">Area code</option>
+                    <option value="+1">+1 (United States)</option>
+                    <option value="+44">+44 (United Kingdom)</option>
+                    <!-- Add more area codes as needed -->
+                </select>
+                <input type="number" class="form-control" id="whatsapp_number" name="whatsapp_number"
+                    placeholder="Enter your whatsapp number" required pattern="\d{7,15}"
+                    title="Please enter a valid phone number with 7-15 digits">
+            </div>
+
+            <div class="form-group">
+                <label for="adult">Select option:</label>
+                <select class="custom-select" id="adult" name="adult" required>
+                    <option value="">adult;;;</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Select channels:</label>
+                <div>
+                    <input type="checkbox" id="channel_maroc" name="channels[]" value="maroc" required>
+                    <label for="channel_maroc">Maroc</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="channel_usa" name="channels[]" value="usa">
+                    <label for="channel_usa">USA</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="channel_france" name="channels[]" value="france" required>
+                    <label for="channel_france">france</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="channel_usa" name="channels[]" value="usa">
+                    <label for="channel_usa">USA</label>
+                </div>
+                <!-- Add more channels as needed -->
+            </div>
+
+            <button type="submit" class="btn btn-danger mt-1">Place Order</button>
+            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+        </form>
 
         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
             <input type="hidden" name="cmd" value="_xclick">
